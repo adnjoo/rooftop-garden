@@ -48,8 +48,8 @@ func _physics_process(_delta: float) -> void:
 
 func update_animation() -> void:
 	if velocity.length() == 0:
-		# Idle - check horizontal first for diagonals
-		if abs(last_direction.x) > abs(last_direction.y):
+		# Idle - prioritize sideways for diagonals
+		if last_direction.x != 0:
 			$AnimatedSprite2D.play("idle_side")
 			$AnimatedSprite2D.flip_h = (last_direction.x < 0)
 		elif last_direction.y < 0:
@@ -57,8 +57,8 @@ func update_animation() -> void:
 		else:
 			$AnimatedSprite2D.play("idle_down")
 	else:
-		# Walking - check horizontal first for diagonals
-		if abs(last_direction.x) > abs(last_direction.y):
+		# Walking - prioritize sideways for diagonals
+		if last_direction.x != 0:
 			$AnimatedSprite2D.play("walk_side")
 			$AnimatedSprite2D.flip_h = (last_direction.x < 0)
 		elif last_direction.y < 0:
