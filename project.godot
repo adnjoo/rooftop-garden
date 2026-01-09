@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="Rooftop Garden"
 run/main_scene="uid://155xx7s6y6ta"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [input]
 
@@ -52,3 +53,4 @@ move_down={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
