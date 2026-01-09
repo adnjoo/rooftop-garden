@@ -147,6 +147,8 @@ texture = ExtResource("2_tefeu")
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0wfyh"]
+custom_data_layer_0/name = "plantable"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_o5qli")
 sources/1 = SubResource("TileSetAtlasSource_o6xl0")
 
