@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clgfnrkes8bxd"
-path="res://.godot/imported/pico_8_city_tilemap_packed.png-6491ba09d0986008b2e0309cb45ea91f.ctex"
+uid="uid://h0j2d853ju51"
+path="res://.godot/imported/tile_0083.png-cfa66661840a70e81400671e9f2215b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/kenney/pico_8_city_tilemap_packed.png"
-dest_files=["res://.godot/imported/pico_8_city_tilemap_packed.png-6491ba09d0986008b2e0309cb45ea91f.ctex"]
+source_file="res://assets/sprites/kenney/tile_0083.png"
+dest_files=["res://.godot/imported/tile_0083.png-cfa66661840a70e81400671e9f2215b6.ctex"]
 
 [params]
 
