@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=11 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -142,7 +142,17 @@ texture = ExtResource("1_o5qli")
 [sub_resource type="TileSet" id="TileSet_0wfyh"]
 sources/0 = SubResource("TileSetAtlasSource_o5qli")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wfyh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
+size = Vector2(720, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottom"]
+size = Vector2(720, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left"]
+size = Vector2(50, 1280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right"]
+size = Vector2(50, 1280)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
 font_size = 32
@@ -173,8 +183,31 @@ texture = ExtResource("2_0wfyh")
 [node name="Player" parent="World" instance=ExtResource("3_player")]
 position = Vector2(208, 912)
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-shape = SubResource("WorldBoundaryShape2D_0wfyh")
+[node name="Walls" type="Node2D" parent="World"]
+
+[node name="TopWall" type="StaticBody2D" parent="World/Walls"]
+position = Vector2(360, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/TopWall"]
+shape = SubResource("RectangleShape2D_top")
+
+[node name="BottomWall" type="StaticBody2D" parent="World/Walls"]
+position = Vector2(360, 1305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/BottomWall"]
+shape = SubResource("RectangleShape2D_bottom")
+
+[node name="LeftWall" type="StaticBody2D" parent="World/Walls"]
+position = Vector2(-25, 640)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/LeftWall"]
+shape = SubResource("RectangleShape2D_left")
+
+[node name="RightWall" type="StaticBody2D" parent="World/Walls"]
+position = Vector2(745, 640)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/RightWall"]
+shape = SubResource("RectangleShape2D_right")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
