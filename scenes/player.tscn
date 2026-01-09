@@ -46,6 +46,7 @@ size = Vector2(7, 1)
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
 frame_progress = 0.18393709

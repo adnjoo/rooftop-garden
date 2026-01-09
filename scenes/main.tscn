@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=8 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="3_player"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
 texture = ExtResource("1_o5qli")
@@ -168,6 +169,9 @@ layer_0/tile_data = PackedInt32Array(327681, 0, 2, 393217, 0, 2, 458753, 0, 2, 5
 position = Vector2(600, 984)
 scale = Vector2(5, 5)
 texture = ExtResource("2_0wfyh")
+
+[node name="Player" parent="World" instance=ExtResource("3_player")]
+position = Vector2(208, 912)
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 shape = SubResource("WorldBoundaryShape2D_0wfyh")
