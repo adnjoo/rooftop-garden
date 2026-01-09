@@ -27,9 +27,9 @@ func update_animation() -> void:
 	else:
 		# Walking
 		if last_direction.y < 0:
-			$AnimatedSprite2D.play("idle_up")
+			$AnimatedSprite2D.play("walk_up")
 		elif last_direction.y > 0:
-			$AnimatedSprite2D.play("idle_down")
+			$AnimatedSprite2D.play("walk_down")
 		else:
-			$AnimatedSprite2D.play("idle_side")
+			$AnimatedSprite2D.play("walk_side")
 			$AnimatedSprite2D.flip_h = (last_direction.x < 0)
