@@ -16,20 +16,20 @@ func _physics_process(_delta: float) -> void:
 
 func update_animation() -> void:
 	if velocity.length() == 0:
-		if last_direction.y < 0:
-			$AnimatedSprite2D.play("idle_up")
-		elif last_direction.y > 0:
-			$AnimatedSprite2D.play("idle_down")
-		else:
-			# Use one sideways animation, flip for direction
+		# Idle - check horizontal first for diagonals
+		if last_direction.x != 0:
 			$AnimatedSprite2D.play("idle_side")
 			$AnimatedSprite2D.flip_h = (last_direction.x < 0)
-	else:
-		# Walking
-		if last_direction.y < 0:
-			$AnimatedSprite2D.play("walk_up")
-		elif last_direction.y > 0:
-			$AnimatedSprite2D.play("walk_down")
+		elif last_direction.y < 0:
+			$AnimatedSprite2D.play("idle_up")
 		else:
+			$AnimatedSprite2D.play("idle_down")
+	else:
+		# Walking - check horizontal first for diagonals
+		if last_direction.x != 0:
 			$AnimatedSprite2D.play("walk_side")
 			$AnimatedSprite2D.flip_h = (last_direction.x < 0)
+		elif last_direction.y < 0:
+			$AnimatedSprite2D.play("walk_up")
+		else:
+			$AnimatedSprite2D.play("walk_down")
