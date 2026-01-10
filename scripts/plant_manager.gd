@@ -24,9 +24,18 @@ func _on_day_advanced(_day: int) -> void:
 		if plant.has_method("grow"):
 			plant.grow()
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	var pos: Vector2
+	var should_handle := false
+	
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var pos = get_global_mouse_position()
+		pos = get_global_mouse_position()
+		should_handle = true
+	elif event is InputEventScreenTouch and event.pressed:
+		pos = get_canvas_transform().affine_inverse() * event.position
+		should_handle = true
+	
+	if should_handle:
 		# Try harvest first, then plant if nothing to harvest
 		if not try_harvest_at_global_pos(pos):
 			try_plant_at_global_pos(pos)
