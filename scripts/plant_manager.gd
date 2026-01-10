@@ -8,6 +8,7 @@ var planted: Dictionary = {} # Vector2i -> Node
 
 func _ready() -> void:
 	GameManager.day_changed.connect(_on_day_changed)
+	add_to_group("plant_manager")
 
 func _on_day_changed(_day: int) -> void:
 	for plant in planted.values():
@@ -124,3 +125,18 @@ func try_water_at_global_pos(global_pos: Vector2) -> void:
 			plant.watered = true
 			plant.update_visual_feedback()
 			plant.play_water_fx()
+
+func clear_all_plants() -> void:
+	# Remove all plants
+	for plant in planted.values():
+		if is_instance_valid(plant):
+			plant.queue_free()
+	planted.clear()
+	
+	# Reset all wet ground tiles back to dry
+	if ground_tilemap != null:
+		var used_cells := ground_tilemap.get_used_cells(0)
+		for cell in used_cells:
+			var source_id := ground_tilemap.get_cell_source_id(0, cell)
+			if source_id == 2:  # If it's wet ground (source 2)
+				ground_tilemap.set_cell(0, cell, 1, Vector2i(0, 0))  # Change back to dry (source 1)
