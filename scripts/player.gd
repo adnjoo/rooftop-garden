@@ -10,7 +10,16 @@ var last_direction = Vector2.DOWN
 func _ready() -> void:
 	target_position = global_position
 
+func _is_overlay_visible() -> bool:
+	var win_overlay = get_tree().get_first_node_in_group("win_overlay")
+	if win_overlay:
+		return win_overlay.visible
+	return false
+
 func _unhandled_input(event: InputEvent) -> void:
+	if _is_overlay_visible():
+		return
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			target_position = get_global_mouse_position()
@@ -21,6 +30,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			is_moving_to_target = true
 
 func _physics_process(_delta: float) -> void:
+	if _is_overlay_visible():
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+	
 	# Check for WASD/arrow key input
 	var keyboard_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	

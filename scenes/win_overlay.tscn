@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://win_overlay_001"]
+
+[ext_resource type="Script" path="res://scripts/win_overlay.gd" id="1_winoverlay"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_message"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_days"]
+font_size = 28
+
+[node name="WinOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_winoverlay")
+title_label = NodePath("Background/Panel/VBoxContainer/TitleLabel")
+message_label = NodePath("Background/Panel/VBoxContainer/MessageLabel")
+days_label = NodePath("Background/Panel/VBoxContainer/DaysLabel")
+keep_playing_button = NodePath("Background/Panel/VBoxContainer/ButtonContainer/KeepPlayingButton")
+restart_button = NodePath("Background/Panel/VBoxContainer/ButtonContainer/RestartButton")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.7)
+
+[node name="Panel" type="Panel" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="Background/Panel/VBoxContainer"]
+layout_mode = 2
+text = "🌱 Delivery complete!"
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_title")
+
+[node name="MessageLabel" type="Label" parent="Background/Panel/VBoxContainer"]
+layout_mode = 2
+text = "You shipped 10 carrots"
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_message")
+
+[node name="DaysLabel" type="Label" parent="Background/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Days taken: 1"
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_days")
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Background/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="KeepPlayingButton" type="Button" parent="Background/Panel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(150, 50)
+mouse_filter = 0
+text = "Keep Playing"
+
+[node name="RestartButton" type="Button" parent="Background/Panel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(150, 50)
+mouse_filter = 0
+text = "Restart Run"
