@@ -7,3 +7,6 @@ func grow() -> void:
 	current_stage += 1
 	if current_stage < stage_textures.size():
 		texture = stage_textures[current_stage]
+
+func is_harvestable() -> bool:
+	return current_stage >= stage_textures.size() - 1
