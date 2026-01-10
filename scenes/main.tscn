@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=17 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="3_player"]
 [ext_resource type="Texture2D" uid="uid://00mj5ohu4cym" path="res://assets/sprites/ase/carrot-1.png" id="3_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://dwofel7s8qs2w" path="res://assets/music/pixel-rooftop-dusk.mp3" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://p88bg0xfsusy" path="res://scripts/plant_manager.gd" id="6_tipki"]
+[ext_resource type="PackedScene" uid="uid://d2ufuklvu6wk5" path="res://scenes/plants/carrot.tscn" id="7_85g3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
 texture = ExtResource("1_o5qli")
@@ -145,6 +147,7 @@ texture = ExtResource("1_o5qli")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6xl0"]
 texture = ExtResource("2_tefeu")
 0:0/0 = 0
+0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_0wfyh"]
 custom_data_layer_0/name = "plantable"
@@ -191,6 +194,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("2_0wfyh")
 
 [node name="Seed" type="Sprite2D" parent="World/Props"]
+visible = false
 position = Vector2(272, 752)
 scale = Vector2(5, 5)
 texture = ExtResource("3_tbgi4")
@@ -228,7 +232,10 @@ position = Vector2(745, 640)
 position = Vector2(-121, 0)
 shape = SubResource("RectangleShape2D_right")
 
-[node name="PlantManager" type="Node2D" parent="World"]
+[node name="PlantManager" type="Node2D" parent="World" node_paths=PackedStringArray("ground_tilemap")]
+script = ExtResource("6_tipki")
+ground_tilemap = NodePath("../TileMap")
+plant_scene = ExtResource("7_85g3d")
 
 [node name="Plants" type="Node2D" parent="World/PlantManager"]
 

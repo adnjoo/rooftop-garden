@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://d2ufuklvu6wk5"]
+[gd_scene load_steps=2 format=3 uid="uid://d2ufuklvu6wk5"]
 
-[node name="Carrot" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://00mj5ohu4cym" path="res://assets/sprites/ase/carrot-1.png" id="1_fev24"]
+
+[node name="Carrot" type="Sprite2D"]
+scale = Vector2(5, 5)
+texture = ExtResource("1_fev24")

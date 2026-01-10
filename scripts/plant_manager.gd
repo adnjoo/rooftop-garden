@@ -6,7 +6,7 @@ extends Node2D
 
 var planted: Dictionary = {} # Vector2i -> Node
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		try_plant_at_global_pos(get_global_mouse_position())
 
