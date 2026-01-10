@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Rooftop Garden"
 run/main_scene="uid://155xx7s6y6ta"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -72,5 +72,4 @@ next_day={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
