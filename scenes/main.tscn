@@ -228,6 +228,10 @@ position = Vector2(745, 640)
 position = Vector2(-121, 0)
 shape = SubResource("RectangleShape2D_right")
 
+[node name="PlantManager" type="Node2D" parent="World"]
+
+[node name="Plants" type="Node2D" parent="World/PlantManager"]
+
 [node name="UI" type="Control" parent="."]
 visible = false
 layout_mode = 1
