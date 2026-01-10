@@ -4,15 +4,16 @@ signal carrot_harvested(total: int)
 
 @export var ground_tilemap: TileMap
 @export var plant_scene: PackedScene
+@export var day_manager: Node
+@export var carrot_label: Label
 @onready var plants_root: Node2D = $Plants
-@onready var carrot_label: Label = get_node("/root/Main/UI/CarrotLabel")
 
 var planted: Dictionary = {} # Vector2i -> Node
 var harvested_carrots: int = 0
 
 func _ready() -> void:
-	var day_manager = get_node("/root/Main/UI/DayManager")
-	day_manager.day_advanced.connect(_on_day_advanced)
+	if day_manager:
+		day_manager.day_advanced.connect(_on_day_advanced)
 	carrot_harvested.connect(_on_carrot_harvested)
 
 func _on_carrot_harvested(total: int) -> void:

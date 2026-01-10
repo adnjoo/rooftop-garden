@@ -236,11 +236,13 @@ position = Vector2(745, 640)
 position = Vector2(-121, 0)
 shape = SubResource("RectangleShape2D_right")
 
-[node name="PlantManager" type="Node2D" parent="World" node_paths=PackedStringArray("ground_tilemap")]
+[node name="PlantManager" type="Node2D" parent="World" node_paths=PackedStringArray("ground_tilemap", "day_manager", "carrot_label")]
 y_sort_enabled = true
 script = ExtResource("6_tipki")
 ground_tilemap = NodePath("../TileMap")
 plant_scene = ExtResource("7_85g3d")
+day_manager = NodePath("../../UI/DayManager")
+carrot_label = NodePath("../../UI/CarrotLabel")
 
 [node name="Plants" type="Node2D" parent="World/PlantManager"]
 y_sort_enabled = true
