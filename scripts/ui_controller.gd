@@ -17,6 +17,10 @@ func _ready() -> void:
 	_update_seed_label()
 	_update_tool_label()
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("next_day"):
+		GameManager.advance_day()
+
 func _on_next_day_pressed() -> void:
 	GameManager.advance_day()
 
