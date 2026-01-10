@@ -24,4 +24,4 @@ func _update_day_label() -> void:
 	day_label.text = "Day " + str(GameManager.current_day)
 
 func _update_carrot_label() -> void:
-	carrot_label.text = "Carrots: " + str(GameManager.harvested_carrots)
+	carrot_label.text = str(GameManager.harvested_carrots)
