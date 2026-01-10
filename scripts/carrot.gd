@@ -1,12 +1,5 @@
-extends Sprite2D
+class_name Carrot
+extends Plant
 
-@export var stage_textures: Array[Texture2D] = []
-var current_stage: int = 0
-
-func grow() -> void:
-	current_stage += 1
-	if current_stage < stage_textures.size():
-		texture = stage_textures[current_stage]
-
-func is_harvestable() -> bool:
-	return current_stage >= stage_textures.size() - 1
+func get_harvest_item() -> String:
+	return "carrot"

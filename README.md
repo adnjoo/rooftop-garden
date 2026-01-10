@@ -2,6 +2,8 @@
 
 A cozy farming game built with Godot 4.5, inspired by Stardew Valley.
 
+![Screenshot](misc/screen.png)
+
 ## Requirements
 
 - [Godot 4.5](https://godotengine.org/download) or later
