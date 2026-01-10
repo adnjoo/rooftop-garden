@@ -6,6 +6,15 @@ extends Node2D
 
 var planted: Dictionary = {} # Vector2i -> Node
 
+func _ready() -> void:
+	var day_manager = get_node("/root/Main/UI/DayManager")
+	day_manager.day_advanced.connect(_on_day_advanced)
+
+func _on_day_advanced(_day: int) -> void:
+	for plant in planted.values():
+		if plant.has_method("grow"):
+			plant.grow()
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		try_plant_at_global_pos(get_global_mouse_position())
