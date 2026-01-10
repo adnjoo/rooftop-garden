@@ -13,6 +13,13 @@ func _on_day_changed(_day: int) -> void:
 	for plant in planted.values():
 		if plant.has_method("grow"):
 			plant.grow()
+	
+	# Reset all wet ground tiles back to dry
+	if ground_tilemap != null:
+		for cell in planted.keys():
+			var source_id := ground_tilemap.get_cell_source_id(0, cell)
+			if source_id == 2:  # If it's wet ground (source 2)
+				ground_tilemap.set_cell(0, cell, 1, Vector2i(0, 0))  # Change back to dry (source 1)
 
 func _unhandled_input(event: InputEvent) -> void:
 	var pos: Vector2
@@ -80,6 +87,13 @@ func try_plant_at_global_pos(global_pos: Vector2) -> void:
 	var cell_local_center: Vector2 = ground_tilemap.map_to_local(cell)
 	plant.global_position = ground_tilemap.to_global(cell_local_center)
 
+	# Check if ground is wet, and if so, set plant as watered
+	var source_id := ground_tilemap.get_cell_source_id(0, cell)
+	if source_id == 2:  # Wet ground (source 2)
+		if plant is Plant:
+			plant.watered = true
+			plant.update_visual_feedback()
+
 	planted[cell] = plant
 
 func try_water_at_global_pos(global_pos: Vector2) -> void:
@@ -89,13 +103,24 @@ func try_water_at_global_pos(global_pos: Vector2) -> void:
 	var local_pos := ground_tilemap.to_local(global_pos)
 	var cell: Vector2i = ground_tilemap.local_to_map(local_pos)
 	
-	if not planted.has(cell):
+	var tile_data := ground_tilemap.get_cell_tile_data(0, cell)
+	if tile_data == null:
 		return
 	
-	var plant = planted[cell]
-	if plant.has_method("watered") and not plant.watered:
-		plant.watered = true
-		if plant.has_method("update_visual_feedback"):
+	var is_plantable := bool(tile_data.get_custom_data("plantable"))
+	if not is_plantable:
+		return
+	
+	# Check if it's the dry ground tile (source 1)
+	var source_id := ground_tilemap.get_cell_source_id(0, cell)
+	if source_id == 1:
+		# Change to wet ground tile (source 2)
+		ground_tilemap.set_cell(0, cell, 2, Vector2i(0, 0))
+	
+	# If there's a plant, water it too
+	if planted.has(cell):
+		var plant = planted[cell]
+		if plant is Plant and not plant.watered:
+			plant.watered = true
 			plant.update_visual_feedback()
-		if plant.has_method("play_water_fx"):
 			plant.play_water_fx()
