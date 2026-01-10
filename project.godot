@@ -8,6 +8,10 @@
 
 config_version=5
 
+[autoload]
+
+DayManager="*res://scripts/day_manager.gd"
+
 [application]
 
 config/name="Rooftop Garden"
