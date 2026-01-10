@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=19 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -8,7 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://dwofel7s8qs2w" path="res://assets/music/pixel-rooftop-dusk.mp3" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://p88bg0xfsusy" path="res://scripts/plant_manager.gd" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://d2ufuklvu6wk5" path="res://scenes/plants/carrot.tscn" id="7_85g3d"]
-[ext_resource type="Script" path="res://scripts/ui_controller.gd" id="8_uicontroller"]
+[ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://scripts/ui_controller.gd" id="8_uicontroller"]
+[ext_resource type="Texture2D" uid="uid://jqetxc3acyfd" path="res://assets/sprites/plants/carrot-icon.png" id="9_carroticon"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
 texture = ExtResource("1_o5qli")
@@ -260,51 +261,59 @@ mouse_filter = 2
 script = ExtResource("8_uicontroller")
 day_label = NodePath("DayLabel")
 next_day_button = NodePath("NextDayButton")
-carrot_label = NodePath("CarrotLabel")
+carrot_label = NodePath("CarrotCounter/CarrotLabel")
 
-[node name="Label" type="Label" parent="UI"]
+[node name="GameLabel" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 64.0
-offset_right = 478.0
-offset_bottom = 109.0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 278.0
+offset_bottom = 93.0
 text = "Rooftop Garden"
 label_settings = SubResource("LabelSettings_0wfyh")
-mouse_filter = 2
 
 [node name="DayLabel" type="Label" parent="UI"]
 layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 20.0
 offset_top = -100.0
 offset_right = 150.0
 offset_bottom = -70.0
-anchor_top = 1.0
-anchor_bottom = 1.0
 text = "Day 1"
 label_settings = SubResource("LabelSettings_0wfyh")
-mouse_filter = 2
 
 [node name="NextDayButton" type="Button" parent="UI"]
 layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 20.0
 offset_top = -60.0
 offset_right = 150.0
 offset_bottom = -20.0
-anchor_top = 1.0
-anchor_bottom = 1.0
 text = "Next Day"
 
-[node name="CarrotLabel" type="Label" parent="UI"]
+[node name="CarrotCounter" type="HBoxContainer" parent="UI"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = -140.0
-offset_right = 180.0
-offset_bottom = -110.0
-anchor_top = 1.0
-anchor_bottom = 1.0
-text = "Carrots: 0"
-label_settings = SubResource("LabelSettings_0wfyh")
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 152.0
+offset_bottom = 141.0
 mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="CarrotIcon" type="TextureRect" parent="UI/CarrotCounter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("9_carroticon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CarrotLabel" type="Label" parent="UI/CarrotCounter"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_0wfyh")
+vertical_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jyhfs")
