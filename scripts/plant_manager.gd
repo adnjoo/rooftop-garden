@@ -26,9 +26,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		should_handle = true
 	
 	if should_handle:
-		# Try harvest first, then plant if nothing to harvest
+		# Try harvest first, then check tool mode
 		if not try_harvest_at_global_pos(pos):
-			try_plant_at_global_pos(pos)
+			if GameManager.current_tool == GameManager.Tool.SEED:
+				try_plant_at_global_pos(pos)
+			elif GameManager.current_tool == GameManager.Tool.WATER:
+				try_water_at_global_pos(pos)
 
 func try_harvest_at_global_pos(global_pos: Vector2) -> bool:
 	if ground_tilemap == null:
@@ -78,3 +81,21 @@ func try_plant_at_global_pos(global_pos: Vector2) -> void:
 	plant.global_position = ground_tilemap.to_global(cell_local_center)
 
 	planted[cell] = plant
+
+func try_water_at_global_pos(global_pos: Vector2) -> void:
+	if ground_tilemap == null:
+		return
+	
+	var local_pos := ground_tilemap.to_local(global_pos)
+	var cell: Vector2i = ground_tilemap.local_to_map(local_pos)
+	
+	if not planted.has(cell):
+		return
+	
+	var plant = planted[cell]
+	if plant.has_method("watered") and not plant.watered:
+		plant.watered = true
+		if plant.has_method("update_visual_feedback"):
+			plant.update_visual_feedback()
+		if plant.has_method("play_water_fx"):
+			plant.play_water_fx()
