@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=18 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dwofel7s8qs2w" path="res://assets/music/pixel-rooftop-dusk.mp3" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://p88bg0xfsusy" path="res://scripts/plant_manager.gd" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://d2ufuklvu6wk5" path="res://scenes/plants/carrot.tscn" id="7_85g3d"]
+[ext_resource type="Script" path="res://scripts/day_manager.gd" id="8_daymanager"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
 texture = ExtResource("1_o5qli")
@@ -177,6 +178,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -244,7 +246,6 @@ plant_scene = ExtResource("7_85g3d")
 y_sort_enabled = true
 
 [node name="UI" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,6 +256,7 @@ offset_right = -16.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="UI"]
 layout_mode = 0
@@ -264,6 +266,32 @@ offset_right = 478.0
 offset_bottom = 109.0
 text = "Rooftop Garden"
 label_settings = SubResource("LabelSettings_0wfyh")
+mouse_filter = 2
+
+[node name="DayLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = -70.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+text = "Day 1"
+label_settings = SubResource("LabelSettings_0wfyh")
+mouse_filter = 2
+
+[node name="NextDayButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -60.0
+offset_right = 150.0
+offset_bottom = -20.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+text = "Next Day"
+
+[node name="DayManager" type="Node" parent="UI"]
+script = ExtResource("8_daymanager")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jyhfs")

@@ -10,7 +10,7 @@ var last_direction = Vector2.DOWN
 func _ready() -> void:
 	target_position = global_position
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			target_position = get_global_mouse_position()
