@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=20 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ufuklvu6wk5" path="res://scenes/plants/carrot.tscn" id="7_85g3d"]
 [ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://scripts/ui_controller.gd" id="8_uicontroller"]
 [ext_resource type="Texture2D" uid="uid://jqetxc3acyfd" path="res://assets/sprites/plants/carrot-icon.png" id="9_carroticon"]
+[ext_resource type="Texture2D" path="res://assets/sprites/plants/carrot-seeds.png" id="10_seedicon"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
 texture = ExtResource("1_o5qli")
@@ -246,7 +247,7 @@ plant_scene = ExtResource("7_85g3d")
 [node name="Plants" type="Node2D" parent="World/PlantManager"]
 y_sort_enabled = true
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("day_label", "next_day_button", "carrot_label")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("day_label", "next_day_button", "carrot_label", "seed_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -262,6 +263,7 @@ script = ExtResource("8_uicontroller")
 day_label = NodePath("DayLabel")
 next_day_button = NodePath("NextDayButton")
 carrot_label = NodePath("CarrotCounter/CarrotLabel")
+seed_label = NodePath("SeedCounter/SeedLabel")
 
 [node name="GameLabel" type="Label" parent="UI"]
 layout_mode = 0
@@ -312,6 +314,28 @@ stretch_mode = 5
 [node name="CarrotLabel" type="Label" parent="UI/CarrotCounter"]
 layout_mode = 2
 text = "0"
+label_settings = SubResource("LabelSettings_0wfyh")
+vertical_alignment = 1
+
+[node name="SeedCounter" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 145.0
+offset_right = 152.0
+offset_bottom = 190.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="SeedIcon" type="TextureRect" parent="UI/SeedCounter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("10_seedicon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SeedLabel" type="Label" parent="UI/SeedCounter"]
+layout_mode = 2
+text = "3"
 label_settings = SubResource("LabelSettings_0wfyh")
 vertical_alignment = 1
 
