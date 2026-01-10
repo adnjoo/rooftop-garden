@@ -10,7 +10,7 @@ config_version=5
 
 [autoload]
 
-DayManager="*res://scripts/day_manager.gd"
+GameManager="*res://scripts/autoload/game_manager.gd"
 
 [application]
 

@@ -1,24 +1,15 @@
 extends Node2D
 
-signal carrot_harvested(total: int)
-
 @export var ground_tilemap: TileMap
 @export var plant_scene: PackedScene
-@export var carrot_label: Label
 @onready var plants_root: Node2D = $Plants
 
 var planted: Dictionary = {} # Vector2i -> Node
-var harvested_carrots: int = 0
 
 func _ready() -> void:
-	DayManager.day_advanced.connect(_on_day_advanced)
-	carrot_harvested.connect(_on_carrot_harvested)
+	GameManager.day_changed.connect(_on_day_changed)
 
-func _on_carrot_harvested(total: int) -> void:
-	if carrot_label:
-		carrot_label.text = "Carrots: " + str(total)
-
-func _on_day_advanced(_day: int) -> void:
+func _on_day_changed(_day: int) -> void:
 	for plant in planted.values():
 		if plant.has_method("grow"):
 			plant.grow()
@@ -53,8 +44,7 @@ func try_harvest_at_global_pos(global_pos: Vector2) -> bool:
 	if plant.has_method("is_harvestable") and plant.is_harvestable():
 		plant.queue_free()
 		planted.erase(cell)
-		harvested_carrots += 1
-		carrot_harvested.emit(harvested_carrots)
+		GameManager.add_carrot()
 		return true
 	
 	return false

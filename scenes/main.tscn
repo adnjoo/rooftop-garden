@@ -236,17 +236,16 @@ position = Vector2(745, 640)
 position = Vector2(-121, 0)
 shape = SubResource("RectangleShape2D_right")
 
-[node name="PlantManager" type="Node2D" parent="World" node_paths=PackedStringArray("ground_tilemap", "carrot_label")]
+[node name="PlantManager" type="Node2D" parent="World" node_paths=PackedStringArray("ground_tilemap")]
 y_sort_enabled = true
 script = ExtResource("6_tipki")
 ground_tilemap = NodePath("../TileMap")
 plant_scene = ExtResource("7_85g3d")
-carrot_label = NodePath("../../UI/CarrotLabel")
 
 [node name="Plants" type="Node2D" parent="World/PlantManager"]
 y_sort_enabled = true
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("day_label", "next_day_button")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("day_label", "next_day_button", "carrot_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -261,6 +260,7 @@ mouse_filter = 2
 script = ExtResource("8_uicontroller")
 day_label = NodePath("DayLabel")
 next_day_button = NodePath("NextDayButton")
+carrot_label = NodePath("CarrotLabel")
 
 [node name="Label" type="Label" parent="UI"]
 layout_mode = 0
