@@ -2,9 +2,11 @@ extends Node
 
 signal carrots_changed(total: int)
 signal day_changed(day: int)
+signal seeds_changed(total: int)
 
 var current_day: int = 1
 var harvested_carrots: int = 0
+var seed_count: int = 3
 
 func add_carrot() -> void:
 	harvested_carrots += 1
@@ -13,3 +15,14 @@ func add_carrot() -> void:
 func advance_day() -> void:
 	current_day += 1
 	day_changed.emit(current_day)
+
+func add_seeds(amount: int) -> void:
+	seed_count += amount
+	seeds_changed.emit(seed_count)
+
+func remove_seed() -> bool:
+	if seed_count > 0:
+		seed_count -= 1
+		seeds_changed.emit(seed_count)
+		return true
+	return false

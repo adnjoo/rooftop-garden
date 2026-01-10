@@ -45,6 +45,7 @@ func try_harvest_at_global_pos(global_pos: Vector2) -> bool:
 		plant.queue_free()
 		planted.erase(cell)
 		GameManager.add_carrot()
+		GameManager.add_seeds(2)
 		return true
 	
 	return false
@@ -65,6 +66,9 @@ func try_plant_at_global_pos(global_pos: Vector2) -> void:
 
 	var is_plantable := bool(tile_data.get_custom_data("plantable"))
 	if not is_plantable:
+		return
+
+	if not GameManager.remove_seed():
 		return
 
 	var plant := plant_scene.instantiate()

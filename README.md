@@ -23,4 +23,3 @@ A cozy farming game built with Godot 4.5, inspired by Stardew Valley.
 ## License
 
 MIT
-
