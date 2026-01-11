@@ -2,59 +2,36 @@ extends Node
 
 enum Tool { SEED, WATER }
 
-signal carrots_changed(total: int)
-signal day_changed(day: int)
-signal seeds_changed(total: int)
-signal tool_changed(tool: Tool)
+signal day_changed
+signal carrots_changed
+signal seeds_changed
+signal tool_changed()
 signal goal_reached()
 
-var current_day: int = 1
-var carrots_total: int = 0
-var seed_count: int = 3
+var current_day: int = 1: set = set_current_day
+var carrots: int = 0: set = set_carrots
+var seeds: int = 3: set = set_seeds
 var current_tool: Tool = Tool.SEED
 var has_won: bool = false
-
-# don't need @export as game_manager is autoload singleton <- delete this
 var win_number: int = 3
 
-func add_carrot() -> void:
-	carrots_total += 1
-	carrots_changed.emit(carrots_total)
-	
-	# Check win condition
-	if carrots_total >= win_number and not has_won:
-		has_won = true
-		goal_reached.emit()
+func set_current_day(value: int) -> void:
+	current_day = value
+	day_changed.emit()
 
-func advance_day() -> void:
-	current_day += 1
-	day_changed.emit(current_day)
+func set_carrots(value2: int) -> void:
+	carrots = value2
+	carrots_changed.emit()
 
-func add_seeds(amount: int) -> void:
-	seed_count += amount
-	seeds_changed.emit(seed_count)
-
-func remove_seed() -> bool:
-	if seed_count > 0:
-		seed_count -= 1
-		seeds_changed.emit(seed_count)
-		return true
-	return false
+func set_seeds(amount: int) -> void:
+	seeds = amount
+	seeds_changed.emit()
 
 func restart_run() -> void:
-	current_day = 1
-	seed_count = 3
-	carrots_total = 0
+	self.current_day = 1
+	self.seeds = 3
+	self.carrots = 0
 	has_won = false
-	
-	# Emit all state change signals
-	day_changed.emit(current_day)
-	seeds_changed.emit(seed_count)
-	carrots_changed.emit(carrots_total)
-	
-	# Clear all plants via signal (PlantManager will listen)
-	# We'll use a signal to avoid direct dependency
-	get_tree().call_group("plant_manager", "clear_all_plants")
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("tool_seed"):

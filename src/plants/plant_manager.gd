@@ -10,7 +10,7 @@ func _ready() -> void:
 	GameManager.day_changed.connect(_on_day_changed)
 	add_to_group("plant_manager")
 
-func _on_day_changed(_day: int) -> void:
+func _on_day_changed() -> void:
 	for plant in planted.values():
 		if plant.has_method("grow"):
 			plant.grow()
@@ -51,12 +51,14 @@ func try_harvest_at_global_pos(global_pos: Vector2) -> bool:
 	if not planted.has(cell):
 		return false
 	
+	print("try_harvest_at_global_pos")
 	var plant = planted[cell]
-	if plant.has_method("is_harvestable") and plant.is_harvestable():
+	if plant.is_harvestable():
 		plant.queue_free()
 		planted.erase(cell)
-		GameManager.add_carrot()
-		GameManager.add_seeds(2)
+		print("carrots: ", GameManager.carrots)
+		GameManager.set_carrots(GameManager.carrots + 1)
+		GameManager.set_seeds(GameManager.seeds + 2)
 		return true
 	
 	return false
@@ -79,7 +81,9 @@ func try_plant_at_global_pos(global_pos: Vector2) -> void:
 	if not is_plantable:
 		return
 
-	if not GameManager.remove_seed():
+	if GameManager.seeds > 0:
+		GameManager.set_seeds(GameManager.seeds - 1)
+	else:
 		return
 
 	var plant := plant_scene.instantiate()
