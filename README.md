@@ -16,9 +16,7 @@ A cozy farming game built with Godot 4.5, inspired by Stardew Valley.
 
 ## Project Setup
 
-- **Resolution:** 720x1280 (portrait mobile)
-- **Rendering:** Mobile renderer with pixel art filtering
-- **Stretch Mode:** Canvas items (responsive scaling)
+- **Resolution:** 1920x1080
 
 ## License
 
