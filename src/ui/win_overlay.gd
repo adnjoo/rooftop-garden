@@ -10,6 +10,7 @@ signal restart_run_pressed
 @export var restart_button: Button
 
 func _ready() -> void:
+	print("WinOverlay ready")
 	visible = false
 	mouse_filter = MOUSE_FILTER_IGNORE
 	add_to_group("win_overlay")
