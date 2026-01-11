@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://baivin1mqwae6"]
 
 [ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://scripts/ui_controller.gd" id="1_uicontroller"]
-[ext_resource type="PackedScene" path="res://scenes/win_overlay.tscn" id="2_winoverlay"]
+[ext_resource type="PackedScene" uid="uid://ckkfnf4odpxvv" path="res://scenes/win_overlay.tscn" id="2_winoverlay"]
 [ext_resource type="Texture2D" uid="uid://jqetxc3acyfd" path="res://assets/sprites/plants/carrot-icon.png" id="3_carroticon"]
 [ext_resource type="Texture2D" uid="uid://dkryr401s7p1i" path="res://assets/sprites/plants/carrot-seeds.png" id="4_seedicon"]
 
@@ -119,6 +119,14 @@ offset_right = 250.0
 offset_bottom = 288.0
 text = "Goal: a / b carrots"
 label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="TestLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 141.0
+offset_right = 618.0
+offset_bottom = 164.0
+text = "hey there"
 
 [node name="Overlays" type="Control" parent="."]
 layout_mode = 3

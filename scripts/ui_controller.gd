@@ -7,6 +7,7 @@ extends Control
 @onready var tool_label: Label = $ToolLabel
 @onready var goal_label: Label = $GoalLabel
 @onready var win_overlay: Control = $Overlays/WinOverlay
+@onready var test_label: Label = $TestLabel
 
 func _ready() -> void:
 	next_day_button.pressed.connect(_on_next_day_pressed)
@@ -29,6 +30,7 @@ func _ready() -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("next_day"):
+		test_label.text = "asdasds"
 		GameManager.advance_day()
 
 func _on_next_day_pressed() -> void:

@@ -14,7 +14,6 @@ var seed_count: int = 3
 var current_tool: Tool = Tool.SEED
 var has_won: bool = false
 
-# don't need @export as game_manager is autoload singleton <- delete this
 var win_number: int = 3
 
 func add_carrot() -> void:
