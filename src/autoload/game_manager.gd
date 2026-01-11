@@ -19,8 +19,8 @@ func set_current_day(value: int) -> void:
 	current_day = value
 	day_changed.emit()
 
-func set_carrots(value: int) -> void:
-	carrots = value
+func set_carrots(value2: int) -> void:
+	carrots = value2
 	carrots_changed.emit()
 
 func set_seeds(amount: int) -> void:
