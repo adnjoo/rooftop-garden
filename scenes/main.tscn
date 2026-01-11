@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=18 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://p88bg0xfsusy" path="res://scripts/plant_manager.gd" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://d2ufuklvu6wk5" path="res://scenes/plants/carrot.tscn" id="7_85g3d"]
 [ext_resource type="Texture2D" uid="uid://b2fa6smjjr03v" path="res://assets/sprites/ground_wet.png" id="11_groundwet"]
-[ext_resource type="PackedScene" uid="uid://baivin1mqwae6" path="res://scenes/ui_root.tscn" id="12_uiroot"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
 texture = ExtResource("1_o5qli")
@@ -248,8 +247,6 @@ plant_scene = ExtResource("7_85g3d")
 
 [node name="Plants" type="Node2D" parent="World/PlantManager"]
 y_sort_enabled = true
-
-[node name="UIRoot" parent="." instance=ExtResource("12_uiroot")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jyhfs")
