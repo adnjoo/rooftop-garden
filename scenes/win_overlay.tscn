@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://win_overlay_001"]
+[gd_scene load_steps=5 format=3 uid="uid://ckkfnf4odpxvv"]
 
-[ext_resource type="Script" path="res://scripts/win_overlay.gd" id="1_winoverlay"]
+[ext_resource type="Script" uid="uid://dvbtaah22ww1t" path="res://scripts/win_overlay.gd" id="1_winoverlay"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_title"]
 font_size = 48
@@ -18,11 +18,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 script = ExtResource("1_winoverlay")
 title_label = NodePath("Background/Panel/VBoxContainer/TitleLabel")
-message_label = NodePath("Background/Panel/VBoxContainer/MessageLabel")
-days_label = NodePath("Background/Panel/VBoxContainer/DaysLabel")
 keep_playing_button = NodePath("Background/Panel/VBoxContainer/ButtonContainer/KeepPlayingButton")
 restart_button = NodePath("Background/Panel/VBoxContainer/ButtonContainer/RestartButton")
 
@@ -62,20 +59,20 @@ theme_override_constants/separation = 20
 [node name="TitleLabel" type="Label" parent="Background/Panel/VBoxContainer"]
 layout_mode = 2
 text = "🌱 Delivery complete!"
-horizontal_alignment = 1
 label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
 
 [node name="MessageLabel" type="Label" parent="Background/Panel/VBoxContainer"]
 layout_mode = 2
 text = "You shipped x carrots"
-horizontal_alignment = 1
 label_settings = SubResource("LabelSettings_message")
+horizontal_alignment = 1
 
 [node name="DaysLabel" type="Label" parent="Background/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Days taken: y"
-horizontal_alignment = 1
 label_settings = SubResource("LabelSettings_days")
+horizontal_alignment = 1
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Background/Panel/VBoxContainer"]
 layout_mode = 2
@@ -83,13 +80,11 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="KeepPlayingButton" type="Button" parent="Background/Panel/VBoxContainer/ButtonContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(150, 50)
-mouse_filter = 0
+layout_mode = 2
 text = "Keep Playing"
 
 [node name="RestartButton" type="Button" parent="Background/Panel/VBoxContainer/ButtonContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(150, 50)
-mouse_filter = 0
+layout_mode = 2
 text = "Restart Run"
