@@ -92,3 +92,4 @@ label_settings = SubResource("LabelSettings_0wfyh")
 layout_mode = 1
 
 [node name="WinOverlay" parent="." instance=ExtResource("2")]
+layout_mode = 1

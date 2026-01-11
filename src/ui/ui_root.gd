@@ -4,10 +4,13 @@ extends Control
 @onready var seed_label: Label = $VBoxContainer/SeedCounter/SeedLabel
 @onready var tool_label: Label = $VBoxContainer/ToolLabel
 @onready var goal_label: Label = $VBoxContainer/GoalLabel
-@onready var win_overlay: Control = $Overlays/WinOverlay
+@onready var win_overlay: Control = $"../WinOverlay"
 @onready var day_label: Label = $VBoxContainer/DayLabel
 
 func _ready() -> void:
+	print("UIController:", self.get_path())
+	print("WinOverlay:", win_overlay, " path=", (win_overlay and win_overlay.get_path()))
+
 	GameManager.carrots_changed.connect(_update_carrot_label)
 	GameManager.seeds_changed.connect(_update_seed_label)
 	GameManager.tool_changed.connect(_on_tool_changed)
@@ -18,16 +21,12 @@ func _ready() -> void:
 	_update_seed_label()
 	_update_tool_label()
 	_update_day_label()
-	
-	# Connect win overlay signals
-	if win_overlay and win_overlay.has_signal("keep_playing_pressed"):
-		win_overlay.keep_playing_pressed.connect(_on_keep_playing_pressed)
-	if win_overlay and win_overlay.has_signal("restart_run_pressed"):
-		win_overlay.restart_run_pressed.connect(_on_restart_run_pressed)
 
 func _update_carrot_label() -> void:
 	carrot_label.text = str(GameManager.carrots)
 	goal_label.text = "Goal: " + str(GameManager.carrots) + " / " + str(GameManager.win_number) + " carrots"
+	if GameManager.carrots >= GameManager.win_number:
+		_on_goal_reached()
 
 func _update_seed_label() -> void:
 	seed_label.text = str(GameManager.seeds)
