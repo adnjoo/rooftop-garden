@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://scripts/autoload/game_manager.gd"
-UIRoot="*res://scenes/ui_root.tscn"
+GameManager="*res://src/autoload/game_manager.gd"
+UIRoot="*res://src/ui/ui_root.tscn"
 
 [display]
 
