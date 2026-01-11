@@ -19,9 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_winoverlay")
-title_label = NodePath("Background/Panel/VBoxContainer/TitleLabel")
-keep_playing_button = NodePath("Background/Panel/VBoxContainer/ButtonContainer/KeepPlayingButton")
-restart_button = NodePath("Background/Panel/VBoxContainer/ButtonContainer/RestartButton")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -88,3 +85,5 @@ text = "Keep Playing"
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 text = "Restart Run"
+
+[connection signal="pressed" from="Background/Panel/VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
