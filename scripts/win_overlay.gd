@@ -4,7 +4,7 @@ signal keep_playing_pressed
 signal restart_run_pressed
 
 @export var title_label: Label
-@export var message_label: Label
+@onready var message_label: Label = $Background/Panel/VBoxContainer/MessageLabel
 @onready var days_label: Label = $Background/Panel/VBoxContainer/DaysLabel
 @export var keep_playing_button: Button
 @export var restart_button: Button
@@ -21,6 +21,7 @@ func _ready() -> void:
 func show_overlay() -> void:
 	visible = true
 	mouse_filter = MOUSE_FILTER_STOP
+	_update_message_label()
 	_update_days_label()
 
 func hide_overlay() -> void:
@@ -30,6 +31,10 @@ func hide_overlay() -> void:
 func _update_days_label() -> void:
 	if days_label:
 		days_label.text = "Days taken: " + str(GameManager.current_day)
+
+func _update_message_label() -> void:
+	if message_label:
+		message_label.text = "You shipped " + str(GameManager.win_number) + " carrots"
 
 func _on_keep_playing_pressed() -> void:
 	keep_playing_pressed.emit()
