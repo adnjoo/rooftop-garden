@@ -88,8 +88,22 @@ layout_mode = 2
 text = "Goal: a / b carrots"
 label_settings = SubResource("LabelSettings_0wfyh")
 
+[node name="HowToPlayLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 1072.0
+offset_top = 368.0
+offset_right = 1500.0
+offset_bottom = 653.0
+text = "Welcome to Rooftop Garden! 
+• Click tile to plant
+• Press 1 = Seeds, 2 = Water 
+• Harvest when ready 
+• Goal: ship 3 carrots"
+label_settings = SubResource("LabelSettings_0wfyh")
+autowrap_mode = 2
+
 [node name="DayChangeButton" parent="HUD" instance=ExtResource("3")]
 layout_mode = 1
 
 [node name="WinOverlay" parent="." instance=ExtResource("2")]
-layout_mode = 1
+visible = false

@@ -26,7 +26,7 @@ func _update_days_label() -> void:
 	days_label.text = "Days taken: " + str(GameManager.current_day - GameManager.INITIAL_DAY)
 
 func _update_message_label() -> void:
-	message_label.text = "You shipped " + str(GameManager.carrots) + " carrots"
+	message_label.text = "You shipped " + str(GameManager.carrots) + " carrots. Thanks for playing the demo!"
 
 func _on_restart_button_pressed() -> void:
 	restart()
