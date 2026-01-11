@@ -79,7 +79,9 @@ func try_plant_at_global_pos(global_pos: Vector2) -> void:
 	if not is_plantable:
 		return
 
-	if GameManager.seeds <= 0:
+	if GameManager.seeds > 0:
+		GameManager.set_seeds(GameManager.seeds - 1)
+	else:
 		return
 
 	var plant := plant_scene.instantiate()
