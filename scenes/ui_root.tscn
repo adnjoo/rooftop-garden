@@ -1,0 +1,132 @@
+[gd_scene load_steps=6 format=3 uid="uid://baivin1mqwae6"]
+
+[ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://scripts/ui_controller.gd" id="1_uicontroller"]
+[ext_resource type="PackedScene" path="res://scenes/win_overlay.tscn" id="2_winoverlay"]
+[ext_resource type="Texture2D" uid="uid://jqetxc3acyfd" path="res://assets/sprites/plants/carrot-icon.png" id="3_carroticon"]
+[ext_resource type="Texture2D" uid="uid://dkryr401s7p1i" path="res://assets/sprites/plants/carrot-seeds.png" id="4_seedicon"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
+font_size = 32
+
+[node name="UIRoot" type="CanvasLayer"]
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = -16.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_uicontroller")
+
+[node name="GameLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 278.0
+offset_bottom = 93.0
+text = "Rooftop Garden"
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="DayLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = -70.0
+grow_vertical = 0
+text = "Day 1"
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="NextDayButton" type="Button" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -60.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_vertical = 0
+text = "Next Day"
+
+[node name="CarrotCounter" type="HBoxContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 152.0
+offset_bottom = 141.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="CarrotIcon" type="TextureRect" parent="HUD/CarrotCounter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("3_carroticon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CarrotLabel" type="Label" parent="HUD/CarrotCounter"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_0wfyh")
+vertical_alignment = 1
+
+[node name="SeedCounter" type="HBoxContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 145.0
+offset_right = 152.0
+offset_bottom = 190.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="SeedIcon" type="TextureRect" parent="HUD/SeedCounter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_seedicon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SeedLabel" type="Label" parent="HUD/SeedCounter"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_0wfyh")
+vertical_alignment = 1
+
+[node name="ToolLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 194.0
+offset_right = 200.0
+offset_bottom = 239.0
+text = "Tool: Seeding"
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="GoalLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 243.0
+offset_right = 250.0
+offset_bottom = 288.0
+text = "Goal: a / b carrots"
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="Overlays" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinOverlay" parent="Overlays" instance=ExtResource("2_winoverlay")]
+layout_mode = 1

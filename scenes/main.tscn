@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=19 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -8,11 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://dwofel7s8qs2w" path="res://assets/music/pixel-rooftop-dusk.mp3" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://p88bg0xfsusy" path="res://scripts/plant_manager.gd" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://d2ufuklvu6wk5" path="res://scenes/plants/carrot.tscn" id="7_85g3d"]
-[ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://scripts/ui_controller.gd" id="8_uicontroller"]
-[ext_resource type="Texture2D" uid="uid://jqetxc3acyfd" path="res://assets/sprites/plants/carrot-icon.png" id="9_carroticon"]
-[ext_resource type="Texture2D" uid="uid://dkryr401s7p1i" path="res://assets/sprites/plants/carrot-seeds.png" id="10_seedicon"]
 [ext_resource type="Texture2D" uid="uid://b2fa6smjjr03v" path="res://assets/sprites/ground_wet.png" id="11_groundwet"]
-[ext_resource type="PackedScene" path="res://scenes/win_overlay.tscn" id="12_winoverlay"]
+[ext_resource type="PackedScene" uid="uid://baivin1mqwae6" path="res://scenes/ui_root.tscn" id="12_uiroot"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
 texture = ExtResource("1_o5qli")
@@ -178,9 +175,6 @@ size = Vector2(50, 1280)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_right"]
 size = Vector2(50, 1280)
 
-[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
-font_size = 32
-
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -255,124 +249,7 @@ plant_scene = ExtResource("7_85g3d")
 [node name="Plants" type="Node2D" parent="World/PlantManager"]
 y_sort_enabled = true
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("day_label", "next_day_button", "carrot_label", "seed_label", "tool_label", "goal_label", "win_overlay")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -32.0
-offset_right = -16.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("8_uicontroller")
-day_label = NodePath("DayLabel")
-next_day_button = NodePath("NextDayButton")
-carrot_label = NodePath("CarrotCounter/CarrotLabel")
-seed_label = NodePath("SeedCounter/SeedLabel")
-tool_label = NodePath("ToolLabel")
-goal_label = NodePath("GoalLabel")
-win_overlay = NodePath("WinOverlay")
-
-[node name="GameLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 278.0
-offset_bottom = 93.0
-text = "Rooftop Garden"
-label_settings = SubResource("LabelSettings_0wfyh")
-
-[node name="DayLabel" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -100.0
-offset_right = 150.0
-offset_bottom = -70.0
-grow_vertical = 0
-text = "Day 1"
-label_settings = SubResource("LabelSettings_0wfyh")
-
-[node name="NextDayButton" type="Button" parent="UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -60.0
-offset_right = 150.0
-offset_bottom = -20.0
-grow_vertical = 0
-text = "Next Day"
-
-[node name="CarrotCounter" type="HBoxContainer" parent="UI"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 96.0
-offset_right = 152.0
-offset_bottom = 141.0
-mouse_filter = 2
-theme_override_constants/separation = 8
-
-[node name="CarrotIcon" type="TextureRect" parent="UI/CarrotCounter"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("9_carroticon")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="CarrotLabel" type="Label" parent="UI/CarrotCounter"]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_0wfyh")
-vertical_alignment = 1
-
-[node name="SeedCounter" type="HBoxContainer" parent="UI"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 145.0
-offset_right = 152.0
-offset_bottom = 190.0
-mouse_filter = 2
-theme_override_constants/separation = 8
-
-[node name="SeedIcon" type="TextureRect" parent="UI/SeedCounter"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture = ExtResource("10_seedicon")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SeedLabel" type="Label" parent="UI/SeedCounter"]
-layout_mode = 2
-text = "3"
-label_settings = SubResource("LabelSettings_0wfyh")
-vertical_alignment = 1
-
-[node name="ToolLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 194.0
-offset_right = 200.0
-offset_bottom = 239.0
-text = "Tool: Seeding"
-label_settings = SubResource("LabelSettings_0wfyh")
-
-[node name="GoalLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 243.0
-offset_right = 250.0
-offset_bottom = 288.0
-text = "Goal: a / b carrots"
-label_settings = SubResource("LabelSettings_0wfyh")
-
-[node name="WinOverlay" parent="UI" instance=ExtResource("12_winoverlay")]
+[node name="UIRoot" parent="." instance=ExtResource("12_uiroot")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jyhfs")

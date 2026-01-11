@@ -1,12 +1,12 @@
 extends Control
 
-@export var day_label: Label
-@export var next_day_button: Button
-@export var carrot_label: Label
-@export var seed_label: Label
-@export var tool_label: Label
-@export var goal_label: Label
-@export var win_overlay: Control
+@onready var day_label: Label = $DayLabel
+@onready var next_day_button: Button = $NextDayButton
+@onready var carrot_label: Label = $CarrotCounter/CarrotLabel
+@onready var seed_label: Label = $SeedCounter/SeedLabel
+@onready var tool_label: Label = $ToolLabel
+@onready var goal_label: Label = $GoalLabel
+@onready var win_overlay: Control = $Overlays/WinOverlay
 
 func _ready() -> void:
 	next_day_button.pressed.connect(_on_next_day_pressed)
@@ -27,7 +27,7 @@ func _ready() -> void:
 	if win_overlay and win_overlay.has_signal("restart_run_pressed"):
 		win_overlay.restart_run_pressed.connect(_on_restart_run_pressed)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("next_day"):
 		GameManager.advance_day()
 
