@@ -17,7 +17,8 @@ func _on_day_changed() -> void:
 	
 	# Reset all wet ground tiles back to dry
 	if ground_tilemap != null:
-		for cell in planted.keys():
+		var used_cells := ground_tilemap.get_used_cells(0)
+		for cell in used_cells:
 			var source_id := ground_tilemap.get_cell_source_id(0, cell)
 			if source_id == 2:  # If it's wet ground (source 2)
 				ground_tilemap.set_cell(0, cell, 1, Vector2i(0, 0))  # Change back to dry (source 1)
