@@ -1,4 +1,4 @@
 extends Button
 
 func _on_pressed() -> void:
-	GameManager.advance_day()
+	GameManager.current_day+=1
