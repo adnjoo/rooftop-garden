@@ -17,7 +17,6 @@ func _ready() -> void:
 	_update_carrot_label()
 	_update_seed_label()
 	_update_tool_label()
-	_update_goal_label()
 	_update_day_label()
 	
 	# Connect win overlay signals
