@@ -1,20 +1,24 @@
 extends Control
 
-@onready var carrot_label: Label = $CarrotCounter/CarrotLabel
-@onready var seed_label: Label = $SeedCounter/SeedLabel
-@onready var tool_label: Label = $ToolLabel
-@onready var goal_label: Label = $GoalLabel
+@onready var carrot_label: Label = $VBoxContainer/CarrotCounter/CarrotLabel
+@onready var seed_label: Label = $VBoxContainer/SeedCounter/SeedLabel
+@onready var tool_label: Label = $VBoxContainer/ToolLabel
+@onready var goal_label: Label = $VBoxContainer/GoalLabel
 @onready var win_overlay: Control = $Overlays/WinOverlay
+@onready var day_label: Label = $VBoxContainer/DayLabel
 
 func _ready() -> void:
 	GameManager.carrots_changed.connect(_on_carrots_changed)
 	GameManager.seeds_changed.connect(_on_seeds_changed)
 	GameManager.tool_changed.connect(_on_tool_changed)
 	GameManager.goal_reached.connect(_on_goal_reached)
+	GameManager.day_changed.connect(_update_day_label)
+
 	_update_carrot_label()
 	_update_seed_label()
 	_update_tool_label()
 	_update_goal_label()
+	_update_day_label(GameManager.current_day)
 	
 	# Connect win overlay signals
 	if win_overlay and win_overlay.has_signal("keep_playing_pressed"):
@@ -62,3 +66,7 @@ func _on_restart_run_pressed() -> void:
 	GameManager.restart_run()
 	if win_overlay and win_overlay.has_method("hide_overlay"):
 		win_overlay.hide_overlay()
+
+func _update_day_label(day: int) -> void:
+	if day_label:
+		day_label.text = "Day %d" % day
