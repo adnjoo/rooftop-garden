@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://baivin1mqwae6"]
 
-[ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://src/ui/ui_controller.gd" id="1"]
+[ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://src/ui/ui_root.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://ckkfnf4odpxvv" path="res://src/ui/win_overlay.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bq8x7k2m3n4p5" path="res://src/ui/DayChangeButton.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://jqetxc3acyfd" path="res://assets/sprites/plants/carrot-icon.png" id="4_carroticon"]
