@@ -369,7 +369,7 @@ offset_left = 32.0
 offset_top = 243.0
 offset_right = 250.0
 offset_bottom = 288.0
-text = "Goal: 0 / 10 carrots"
+text = "Goal: a / b carrots"
 label_settings = SubResource("LabelSettings_0wfyh")
 
 [node name="WinOverlay" parent="UI" instance=ExtResource("12_winoverlay")]
