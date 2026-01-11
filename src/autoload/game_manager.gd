@@ -8,9 +8,13 @@ signal seeds_changed
 signal tool_changed()
 signal goal_reached()
 
-var current_day: int = 1: set = set_current_day
-var carrots: int = 0: set = set_carrots
-var seeds: int = 3: set = set_seeds
+var INITIAL_SEEDS: int = 3
+var INITIAL_CARROTS: int = 0
+var INITIAL_DAY: int = 1
+
+var current_day: int = INITIAL_DAY: set = set_current_day
+var carrots: int = INITIAL_CARROTS: set = set_carrots
+var seeds: int = INITIAL_SEEDS: set = set_seeds
 var current_tool: Tool = Tool.SEED
 var has_won: bool = false
 var win_number: int = 3
@@ -19,8 +23,8 @@ func set_current_day(value: int) -> void:
 	current_day = value
 	day_changed.emit()
 
-func set_carrots(value2: int) -> void:
-	carrots = value2
+func set_carrots(value: int) -> void:
+	carrots = value
 	carrots_changed.emit()
 
 func set_seeds(amount: int) -> void:
@@ -28,9 +32,9 @@ func set_seeds(amount: int) -> void:
 	seeds_changed.emit()
 
 func restart_run() -> void:
-	self.current_day = 1
-	self.seeds = 3
-	self.carrots = 0
+	self.current_day = INITIAL_DAY
+	self.seeds = INITIAL_SEEDS
+	self.carrots = INITIAL_CARROTS
 	has_won = false
 
 func _input(event: InputEvent) -> void:

@@ -6,6 +6,7 @@ extends Control
 @onready var goal_label: Label = $VBoxContainer/GoalLabel
 @onready var win_overlay: Control = $"../WinOverlay"
 @onready var day_label: Label = $VBoxContainer/DayLabel
+@onready var how_to_play_label: Label = $HowToPlayLabel
 
 func _ready() -> void:
 	print("UIRoot:", self.get_path())
@@ -21,11 +22,15 @@ func _ready() -> void:
 	_update_seed_label()
 	_update_tool_label()
 	_update_day_label()
+	
+	# Show how to play instructions on day 1 only
+	if GameManager.current_day == GameManager.INITIAL_DAY:
+		_show_how_to_play()
 
 func _update_carrot_label() -> void:
 	carrot_label.text = str(GameManager.carrots)
 	goal_label.text = "Goal: " + str(GameManager.carrots) + " / " + str(GameManager.win_number) + " carrots"
-	if GameManager.carrots >= GameManager.win_number:
+	if GameManager.carrots == GameManager.win_number:
 		_on_goal_reached()
 
 func _update_seed_label() -> void:
@@ -52,3 +57,10 @@ func _on_restart_run_pressed() -> void:
 
 func _update_day_label() -> void:
 	day_label.text = "Day: " + str(GameManager.current_day)
+
+func _show_how_to_play() -> void:
+	how_to_play_label.visible = true
+	get_tree().create_timer(10.0).timeout.connect(_hide_how_to_play)
+
+func _hide_how_to_play() -> void:
+	how_to_play_label.visible = false

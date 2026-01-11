@@ -1,8 +1,5 @@
 extends Control
 
-signal keep_playing_pressed
-signal restart_run_pressed
-
 @export var title_label: Label
 @onready var message_label: Label = $Background/Panel/VBoxContainer/MessageLabel
 @onready var days_label: Label = $Background/Panel/VBoxContainer/DaysLabel
@@ -14,10 +11,6 @@ func _ready() -> void:
 	visible = false
 	mouse_filter = MOUSE_FILTER_IGNORE
 	add_to_group("win_overlay")
-	if keep_playing_button:
-		keep_playing_button.pressed.connect(_on_keep_playing_pressed)
-	if restart_button:
-		restart_button.pressed.connect(_on_restart_run_pressed)
 
 func show_overlay() -> void:
 	visible = true
@@ -30,15 +23,17 @@ func hide_overlay() -> void:
 	mouse_filter = MOUSE_FILTER_IGNORE
 
 func _update_days_label() -> void:
-	if days_label:
-		days_label.text = "Days taken: " + str(GameManager.current_day)
+	days_label.text = "Days taken: " + str(GameManager.current_day - GameManager.INITIAL_DAY)
 
 func _update_message_label() -> void:
-	if message_label:
-		message_label.text = "You shipped " + str(GameManager.win_number) + " carrots"
+	message_label.text = "You shipped " + str(GameManager.carrots) + " carrots. Thanks for playing the demo!"
 
-func _on_keep_playing_pressed() -> void:
-	keep_playing_pressed.emit()
+func _on_restart_button_pressed() -> void:
+	restart()
 
-func _on_restart_run_pressed() -> void:
-	restart_run_pressed.emit()
+func restart() -> void:
+	GameManager.restart_run()
+	hide_overlay()
+
+func _on_keep_playing_button_pressed() -> void:
+	hide_overlay()
