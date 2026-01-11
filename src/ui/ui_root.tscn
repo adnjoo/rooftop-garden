@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://baivin1mqwae6"]
 
-[ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://src/ui/ui_controller.gd" id="1_uicontroller"]
-[ext_resource type="PackedScene" path="res://src/ui/win_overlay.tscn" id="2_winoverlay"]
+[ext_resource type="Script" uid="uid://bpwfvpmv0tyb" path="res://src/ui/ui_controller.gd" id="1"]
+[ext_resource type="PackedScene" path="res://src/ui/win_overlay.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://jqetxc3acyfd" path="res://assets/sprites/plants/carrot-icon.png" id="3_carroticon"]
 [ext_resource type="Texture2D" uid="uid://dkryr401s7p1i" path="res://assets/sprites/plants/carrot-seeds.png" id="4_seedicon"]
 
@@ -22,7 +22,10 @@ offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_uicontroller")
+script = ExtResource("1")
+
+[node name="WinOverlay" parent="." instance=ExtResource("2")]
+layout_mode = 1
 
 [node name="GameLabel" type="Label" parent="HUD"]
 layout_mode = 0
@@ -119,15 +122,3 @@ offset_right = 250.0
 offset_bottom = 288.0
 text = "Goal: a / b carrots"
 label_settings = SubResource("LabelSettings_0wfyh")
-
-[node name="Overlays" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="WinOverlay" parent="Overlays" instance=ExtResource("2_winoverlay")]
-layout_mode = 1

@@ -67,7 +67,9 @@ func _update_goal_label() -> void:
 		goal_label.text = "Goal: " + str(GameManager.carrots_total) + " / " + str(GameManager.win_number) + " carrots"
 
 func _on_goal_reached() -> void:
+	print("Goal reached")
 	if win_overlay and win_overlay.has_method("show_overlay"):
+		print("Showing win overlay")
 		win_overlay.show_overlay()
 
 func _on_keep_playing_pressed() -> void:
