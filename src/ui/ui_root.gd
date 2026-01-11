@@ -8,7 +8,7 @@ extends Control
 @onready var day_label: Label = $VBoxContainer/DayLabel
 
 func _ready() -> void:
-	print("UIController:", self.get_path())
+	print("UIRoot:", self.get_path())
 	print("WinOverlay:", win_overlay, " path=", (win_overlay and win_overlay.get_path()))
 
 	GameManager.carrots_changed.connect(_update_carrot_label)
