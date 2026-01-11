@@ -13,13 +13,14 @@ var carrots_total: int = 0
 var seed_count: int = 3
 var current_tool: Tool = Tool.SEED
 var has_won: bool = false
+var win_number: int = 3
 
 func add_carrot() -> void:
 	carrots_total += 1
 	carrots_changed.emit(carrots_total)
 	
 	# Check win condition
-	if carrots_total >= 10 and not has_won:
+	if carrots_total >= win_number and not has_won:
 		has_won = true
 		goal_reached.emit()
 

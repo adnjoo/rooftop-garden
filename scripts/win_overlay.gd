@@ -5,7 +5,7 @@ signal restart_run_pressed
 
 @export var title_label: Label
 @export var message_label: Label
-@export var days_label: Label
+@onready var days_label: Label = $Background/Panel/VBoxContainer/DaysLabel
 @export var keep_playing_button: Button
 @export var restart_button: Button
 
