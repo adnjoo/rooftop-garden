@@ -25,7 +25,7 @@ func _ready() -> void:
 func _update_carrot_label() -> void:
 	carrot_label.text = str(GameManager.carrots)
 	goal_label.text = "Goal: " + str(GameManager.carrots) + " / " + str(GameManager.win_number) + " carrots"
-	if GameManager.carrots >= GameManager.win_number:
+	if GameManager.carrots == GameManager.win_number:
 		_on_goal_reached()
 
 func _update_seed_label() -> void:

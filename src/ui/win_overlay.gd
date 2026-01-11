@@ -34,3 +34,6 @@ func _on_restart_button_pressed() -> void:
 func restart() -> void:
 	GameManager.restart_run()
 	hide_overlay()
+
+func _on_keep_playing_button_pressed() -> void:
+	hide_overlay()
