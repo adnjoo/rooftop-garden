@@ -118,14 +118,14 @@ func try_water_at_global_pos(global_pos: Vector2) -> void:
 	if not is_plantable:
 		return
 
-	# watering animation
-	_spawn_water_splash(cell)
 	
 	# Check if it's the dry ground tile (source 1)
 	var source_id := ground_tilemap.get_cell_source_id(0, cell)
 	if source_id == 1:
 		# Change to wet ground tile (source 2)
 		ground_tilemap.set_cell(0, cell, 2, Vector2i(0, 0))
+		# spawn watering animation
+		_spawn_water_splash(cell)
 	
 	# If there's a plant, water it too
 	if planted.has(cell):
