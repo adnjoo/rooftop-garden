@@ -184,6 +184,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="DayNightTint" type="CanvasModulate" parent="."]
+color = Color(1, 0.92156863, 0.80784315, 1)
+
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
