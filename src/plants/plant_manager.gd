@@ -3,6 +3,7 @@ extends Node2D
 @export var ground_tilemap: TileMap
 @export var plant_scene: PackedScene
 @onready var plants_root: Node2D = $Plants
+@export var water_splash_scene: PackedScene
 
 var planted: Dictionary = {} # Vector2i -> Node
 
@@ -116,12 +117,15 @@ func try_water_at_global_pos(global_pos: Vector2) -> void:
 	var is_plantable := bool(tile_data.get_custom_data("plantable"))
 	if not is_plantable:
 		return
+
 	
 	# Check if it's the dry ground tile (source 1)
 	var source_id := ground_tilemap.get_cell_source_id(0, cell)
 	if source_id == 1:
 		# Change to wet ground tile (source 2)
 		ground_tilemap.set_cell(0, cell, 2, Vector2i(0, 0))
+		# spawn watering animation
+		_spawn_water_splash(cell)
 	
 	# If there's a plant, water it too
 	if planted.has(cell):
@@ -129,7 +133,7 @@ func try_water_at_global_pos(global_pos: Vector2) -> void:
 		if plant is Plant and not plant.watered:
 			plant.watered = true
 			plant.update_visual_feedback()
-			plant.play_water_fx()
+			# plant.play_water_fx()
 
 func clear_all_plants() -> void:
 	# Remove all plants
@@ -145,3 +149,11 @@ func clear_all_plants() -> void:
 			var source_id := ground_tilemap.get_cell_source_id(0, cell)
 			if source_id == 2:  # If it's wet ground (source 2)
 				ground_tilemap.set_cell(0, cell, 1, Vector2i(0, 0))  # Change back to dry (source 1)
+
+func _spawn_water_splash(cell: Vector2i) -> void:
+	var splash := water_splash_scene.instantiate() as Node2D
+	plants_root.add_child(splash)
+
+	# Use SAME positioning you already use for plants
+	var cell_local_center: Vector2 = ground_tilemap.map_to_local(cell)
+	splash.global_position = ground_tilemap.to_global(cell_local_center)
