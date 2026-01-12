@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=19 format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dwofel7s8qs2w" path="res://assets/music/pixel-rooftop-dusk.mp3" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://p88bg0xfsusy" path="res://src/plants/plant_manager.gd" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://d2ufuklvu6wk5" path="res://src/plants/carrot.tscn" id="7_85g3d"]
+[ext_resource type="PackedScene" uid="uid://3d7jwu5dxhx6" path="res://src/plants/watersplash.tscn" id="9_mgm53"]
 [ext_resource type="Texture2D" uid="uid://b2fa6smjjr03v" path="res://assets/sprites/ground_wet.png" id="11_groundwet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5qli"]
@@ -244,6 +245,7 @@ y_sort_enabled = true
 script = ExtResource("6_tipki")
 ground_tilemap = NodePath("../TileMap")
 plant_scene = ExtResource("7_85g3d")
+water_splash_scene = ExtResource("9_mgm53")
 
 [node name="Plants" type="Node2D" parent="World/PlantManager"]
 y_sort_enabled = true

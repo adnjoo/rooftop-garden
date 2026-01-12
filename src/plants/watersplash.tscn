@@ -27,7 +27,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nrile")
 }],
-"loop": true,
+"loop": false,
 "name": &"splash",
 "speed": 3.0
 }]
@@ -36,6 +36,7 @@ animations = [{
 script = ExtResource("1_k8qg7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_1wsb7")
 animation = &"splash"
 frame = 1
