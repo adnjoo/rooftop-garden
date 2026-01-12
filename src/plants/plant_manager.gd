@@ -1,159 +1,116 @@
 extends Node2D
 
+# Constants to remove magic numbers
+const TILE_SOURCE_DRY = 1
+const TILE_SOURCE_WET = 2
+
 @export var ground_tilemap: TileMap
 @export var plant_scene: PackedScene
-@onready var plants_root: Node2D = $Plants
 @export var water_splash_scene: PackedScene
 
-var planted: Dictionary = {} # Vector2i -> Node
+@onready var plants_root: Node2D = $Plants
+
+var planted: Dictionary = {}  # Vector2i -> Plant Node
+var watered_cells: Array[Vector2i] = [] # Track wet cells for easy reset
 
 func _ready() -> void:
 	GameManager.day_changed.connect(_on_day_changed)
 	add_to_group("plant_manager")
 
 func _on_day_changed() -> void:
+	# Grow plants
 	for plant in planted.values():
 		if plant.has_method("grow"):
 			plant.grow()
 	
-	# Reset all wet ground tiles back to dry
-	if ground_tilemap != null:
-		var used_cells := ground_tilemap.get_used_cells(0)
-		for cell in used_cells:
-			var source_id := ground_tilemap.get_cell_source_id(0, cell)
-			if source_id == 2:  # If it's wet ground (source 2)
-				ground_tilemap.set_cell(0, cell, 1, Vector2i(0, 0))  # Change back to dry (source 1)
+	# Reset only the cells we actually watered
+	for cell in watered_cells:
+		ground_tilemap.set_cell(0, cell, TILE_SOURCE_DRY, Vector2i.ZERO)
+	watered_cells.clear()
 
 func _unhandled_input(event: InputEvent) -> void:
-	var pos: Vector2
-	var should_handle := false
+	var pos := Vector2.ZERO
+	var pressed := false
 	
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		pos = get_global_mouse_position()
-		should_handle = true
+		pressed = true
 	elif event is InputEventScreenTouch and event.pressed:
 		pos = get_canvas_transform().affine_inverse() * event.position
-		should_handle = true
+		pressed = true
 	
-	if should_handle:
-		# Try harvest first, then check tool mode
-		if not try_harvest_at_global_pos(pos):
-			if GameManager.current_tool == GameManager.Tool.SEED:
-				try_plant_at_global_pos(pos)
-			elif GameManager.current_tool == GameManager.Tool.WATER:
-				try_water_at_global_pos(pos)
+	if not pressed: return
+	
+	# Helper logic for input flow
+	var cell = _get_cell_from_global(pos)
+	if not try_harvest(cell):
+		match GameManager.current_tool:
+			GameManager.Tool.SEED:  try_plant(cell)
+			GameManager.Tool.WATER: try_water(cell)
 
-func try_harvest_at_global_pos(global_pos: Vector2) -> bool:
-	if ground_tilemap == null:
+# --- Helper Methods ---
+
+func _get_cell_from_global(global_pos: Vector2) -> Vector2i:
+	var local_pos = ground_tilemap.to_local(global_pos)
+	return ground_tilemap.local_to_map(local_pos)
+
+func _get_cell_center_global(cell: Vector2i) -> Vector2:
+	var local_center = ground_tilemap.map_to_local(cell)
+	return ground_tilemap.to_global(local_center)
+
+# --- Action Logic ---
+
+func try_harvest(cell: Vector2i) -> bool:
+	var plant = planted.get(cell)
+	if not plant or not plant.is_harvestable():
 		return false
 	
-	var local_pos := ground_tilemap.to_local(global_pos)
-	var cell: Vector2i = ground_tilemap.local_to_map(local_pos)
+	plant.queue_free()
+	planted.erase(cell)
 	
-	if not planted.has(cell):
-		return false
+	GameManager.set_carrots(GameManager.carrots + 1)
+	GameManager.set_seeds(GameManager.seeds + 2)
+	return true
+
+func try_plant(cell: Vector2i) -> void:
+	if planted.has(cell) or GameManager.seeds <= 0: return
 	
-	print("try_harvest_at_global_pos")
-	var plant = planted[cell]
-	if plant.is_harvestable():
-		plant.queue_free()
-		planted.erase(cell)
-		print("carrots: ", GameManager.carrots)
-		GameManager.set_carrots(GameManager.carrots + 1)
-		GameManager.set_seeds(GameManager.seeds + 2)
-		return true
-	
-	return false
+	var tile_data = ground_tilemap.get_cell_tile_data(0, cell)
+	if not tile_data or not tile_data.get_custom_data("plantable"): return
 
-func try_plant_at_global_pos(global_pos: Vector2) -> void:
-	if ground_tilemap == null or plant_scene == null:
-		return
+	# Spend seed
+	GameManager.set_seeds(GameManager.seeds - 1)
 
-	var local_pos := ground_tilemap.to_local(global_pos)
-	var cell: Vector2i = ground_tilemap.local_to_map(local_pos)
-
-	if planted.has(cell):
-		return
-
-	var tile_data := ground_tilemap.get_cell_tile_data(0, cell)
-	if tile_data == null:
-		return
-
-	var is_plantable := bool(tile_data.get_custom_data("plantable"))
-	if not is_plantable:
-		return
-
-	if GameManager.seeds > 0:
-		GameManager.set_seeds(GameManager.seeds - 1)
-	else:
-		return
-
-	var plant := plant_scene.instantiate()
+	# Instance plant
+	var plant = plant_scene.instantiate()
 	plants_root.add_child(plant)
-
-	var cell_local_center: Vector2 = ground_tilemap.map_to_local(cell)
-	plant.global_position = ground_tilemap.to_global(cell_local_center)
-
-	# Check if ground is wet, and if so, set plant as watered
-	var source_id := ground_tilemap.get_cell_source_id(0, cell)
-	if source_id == 2:  # Wet ground (source 2)
-		if plant is Plant:
-			plant.watered = true
-			plant.update_visual_feedback()
-
+	plant.global_position = _get_cell_center_global(cell)
 	planted[cell] = plant
 
-func try_water_at_global_pos(global_pos: Vector2) -> void:
-	if ground_tilemap == null:
-		return
-	
-	var local_pos := ground_tilemap.to_local(global_pos)
-	var cell: Vector2i = ground_tilemap.local_to_map(local_pos)
-	
-	var tile_data := ground_tilemap.get_cell_tile_data(0, cell)
-	if tile_data == null:
-		return
-	
-	var is_plantable := bool(tile_data.get_custom_data("plantable"))
-	if not is_plantable:
-		return
+	# Check if planting in pre-watered soil
+	if ground_tilemap.get_cell_source_id(0, cell) == TILE_SOURCE_WET:
+		_apply_water_to_plant(plant)
 
-	
-	# Check if it's the dry ground tile (source 1)
-	var source_id := ground_tilemap.get_cell_source_id(0, cell)
-	if source_id == 1:
-		# Change to wet ground tile (source 2)
-		ground_tilemap.set_cell(0, cell, 2, Vector2i(0, 0))
-		# spawn watering animation
+func try_water(cell: Vector2i) -> void:
+	var tile_data = ground_tilemap.get_cell_tile_data(0, cell)
+	if not tile_data or not tile_data.get_custom_data("plantable"): return
+
+	# Update Tile to wet
+	if ground_tilemap.get_cell_source_id(0, cell) != TILE_SOURCE_WET:
+		ground_tilemap.set_cell(0, cell, TILE_SOURCE_WET, Vector2i.ZERO)
+		watered_cells.append(cell)
 		_spawn_water_splash(cell)
 	
-	# If there's a plant, water it too
+	# Update Plant
 	if planted.has(cell):
-		var plant = planted[cell]
-		if plant is Plant and not plant.watered:
-			plant.watered = true
-			plant.update_visual_feedback()
-			# plant.play_water_fx()
+		_apply_water_to_plant(planted[cell])
 
-func clear_all_plants() -> void:
-	# Remove all plants
-	for plant in planted.values():
-		if is_instance_valid(plant):
-			plant.queue_free()
-	planted.clear()
-	
-	# Reset all wet ground tiles back to dry
-	if ground_tilemap != null:
-		var used_cells := ground_tilemap.get_used_cells(0)
-		for cell in used_cells:
-			var source_id := ground_tilemap.get_cell_source_id(0, cell)
-			if source_id == 2:  # If it's wet ground (source 2)
-				ground_tilemap.set_cell(0, cell, 1, Vector2i(0, 0))  # Change back to dry (source 1)
+func _apply_water_to_plant(plant: Node) -> void:
+	if plant is Plant and not plant.watered:
+		plant.watered = true
+		plant.update_visual_feedback()
 
 func _spawn_water_splash(cell: Vector2i) -> void:
-	var splash := water_splash_scene.instantiate() as Node2D
+	var splash = water_splash_scene.instantiate() as Node2D
 	plants_root.add_child(splash)
-
-	# Use SAME positioning you already use for plants
-	var cell_local_center: Vector2 = ground_tilemap.map_to_local(cell)
-	splash.global_position = ground_tilemap.to_global(cell_local_center)
+	splash.global_position = _get_cell_center_global(cell)
