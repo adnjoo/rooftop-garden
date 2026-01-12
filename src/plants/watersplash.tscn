@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://3d7jwu5dxhx6"]
+
+[ext_resource type="Script" uid="uid://cqsd0v7wrjpjp" path="res://src/plants/watersplash.gd" id="1_k8qg7"]
+[ext_resource type="Texture2D" uid="uid://cam7m3ryutxvd" path="res://assets/sprites/rain_on_floor.png" id="2_tvmgn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qg80"]
+atlas = ExtResource("2_tvmgn")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1r1j"]
+atlas = ExtResource("2_tvmgn")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrile"]
+atlas = ExtResource("2_tvmgn")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wsb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qg80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1r1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrile")
+}],
+"loop": true,
+"name": &"splash",
+"speed": 3.0
+}]
+
+[node name="WaterSplash" type="Node2D"]
+script = ExtResource("1_k8qg7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1wsb7")
+animation = &"splash"
+frame = 1
+frame_progress = 0.5434531

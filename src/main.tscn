@@ -196,7 +196,7 @@ layer_0/tile_data = PackedInt32Array(327681, 0, 9, 327683, 65536, 9, 327684, 655
 y_sort_enabled = true
 
 [node name="Sign" type="Sprite2D" parent="World/Props"]
-position = Vector2(544, 976)
+position = Vector2(1067.0001, 229.99998)
 scale = Vector2(5, 5)
 texture = ExtResource("2_0wfyh")
 
