@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cv82ltk1sl37h"
-path="res://.godot/imported/bg.png-4b6f81a8aa550bfbaa154e9fa9ce4dac.ctex"
+path="res://.godot/imported/bg.png-8c92a3dbdbc7f9a9e797a3037e2e07d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Modern tiles_Free/bg.png"
-dest_files=["res://.godot/imported/bg.png-4b6f81a8aa550bfbaa154e9fa9ce4dac.ctex"]
+source_file="res://assets/sprites/Modern tiles_Free/bg.png"
+dest_files=["res://.godot/imported/bg.png-8c92a3dbdbc7f9a9e797a3037e2e07d2.ctex"]
 
 [params]
 

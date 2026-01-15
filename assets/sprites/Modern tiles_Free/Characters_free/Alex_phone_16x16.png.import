@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fh37dqdv5w2a"
-path="res://.godot/imported/Alex_phone_16x16.png-4431ff77ae527ebbe0d207927f832fa0.ctex"
+path="res://.godot/imported/Alex_phone_16x16.png-51085922858922911b94a46f68fda2e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Modern tiles_Free/Characters_free/Alex_phone_16x16.png"
-dest_files=["res://.godot/imported/Alex_phone_16x16.png-4431ff77ae527ebbe0d207927f832fa0.ctex"]
+source_file="res://assets/sprites/Modern tiles_Free/Characters_free/Alex_phone_16x16.png"
+dest_files=["res://.godot/imported/Alex_phone_16x16.png-51085922858922911b94a46f68fda2e1.ctex"]
 
 [params]
 

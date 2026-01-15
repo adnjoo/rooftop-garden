@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sdlxdvaqvrj5"
-path="res://.godot/imported/Alex_run_16x16.png-b0764d28c266c42884c46c322c0ce745.ctex"
+path="res://.godot/imported/Alex_run_16x16.png-4eeee31d4aaa4c95b2bb018698068fa4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Modern tiles_Free/Characters_free/Alex_run_16x16.png"
-dest_files=["res://.godot/imported/Alex_run_16x16.png-b0764d28c266c42884c46c322c0ce745.ctex"]
+source_file="res://assets/sprites/Modern tiles_Free/Characters_free/Alex_run_16x16.png"
+dest_files=["res://.godot/imported/Alex_run_16x16.png-4eeee31d4aaa4c95b2bb018698068fa4.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwtlyb74cph7l"
-path="res://.godot/imported/Bob_run_16x16.png-138b8b228a557004a24401dff4ebcf2c.ctex"
+path="res://.godot/imported/Bob_run_16x16.png-615300057879704456693290af829af8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Modern tiles_Free/Characters_free/Bob_run_16x16.png"
-dest_files=["res://.godot/imported/Bob_run_16x16.png-138b8b228a557004a24401dff4ebcf2c.ctex"]
+source_file="res://assets/sprites/Modern tiles_Free/Characters_free/Bob_run_16x16.png"
+dest_files=["res://.godot/imported/Bob_run_16x16.png-615300057879704456693290af829af8.ctex"]
 
 [params]
 
