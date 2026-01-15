@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brdp3512hbq2a"
-path="res://.godot/imported/Bob_phone_16x16.png-2d96db5459e73d924504d3c421e7670b.ctex"
+path="res://.godot/imported/Bob_phone_16x16.png-ff52f1fabe964e460b3c70de766e53a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Modern tiles_Free/Characters_free/Bob_phone_16x16.png"
-dest_files=["res://.godot/imported/Bob_phone_16x16.png-2d96db5459e73d924504d3c421e7670b.ctex"]
+source_file="res://assets/sprites/Modern tiles_Free/Characters_free/Bob_phone_16x16.png"
+dest_files=["res://.godot/imported/Bob_phone_16x16.png-ff52f1fabe964e460b3c70de766e53a8.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tdwmfk2wrl7a"
-path="res://.godot/imported/Adam_sit3_16x16.png-ca997fea809c98de9a963df3f80ebb5e.ctex"
+path="res://.godot/imported/Adam_sit3_16x16.png-e4aa291eebbfbe837d75763649bfed89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Modern tiles_Free/Characters_free/Adam_sit3_16x16.png"
-dest_files=["res://.godot/imported/Adam_sit3_16x16.png-ca997fea809c98de9a963df3f80ebb5e.ctex"]
+source_file="res://assets/sprites/Modern tiles_Free/Characters_free/Adam_sit3_16x16.png"
+dest_files=["res://.godot/imported/Adam_sit3_16x16.png-e4aa291eebbfbe837d75763649bfed89.ctex"]
 
 [params]
 

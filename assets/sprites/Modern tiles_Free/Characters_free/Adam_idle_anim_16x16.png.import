@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://85lsfm3vvtj8"
-path="res://.godot/imported/Adam_idle_anim_16x16.png-aba55f5b64ab03e2f85ba932304fe7f5.ctex"
+path="res://.godot/imported/Adam_idle_anim_16x16.png-824ed2dd507d76984b138de6b0b98561.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Modern tiles_Free/Characters_free/Adam_idle_anim_16x16.png"
-dest_files=["res://.godot/imported/Adam_idle_anim_16x16.png-aba55f5b64ab03e2f85ba932304fe7f5.ctex"]
+source_file="res://assets/sprites/Modern tiles_Free/Characters_free/Adam_idle_anim_16x16.png"
+dest_files=["res://.godot/imported/Adam_idle_anim_16x16.png-824ed2dd507d76984b138de6b0b98561.ctex"]
 
 [params]
 
