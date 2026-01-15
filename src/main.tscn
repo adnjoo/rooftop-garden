@@ -190,13 +190,11 @@ mouse_filter = 2
 color = Color(1, 0.92156863, 0.80784315, 1)
 
 [node name="Sky" type="Sprite2D" parent="."]
-position = Vector2(368, 315)
 scale = Vector2(3, 3)
 texture = ExtResource("1_mgm53")
 
 [node name="ParallaxLayer" type="Parallax2D" parent="."]
 repeat_size = Vector2(4000, 0)
-autoscroll = Vector2(10, 0)
 script = ExtResource("2_kqbth")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
