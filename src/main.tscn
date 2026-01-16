@@ -187,6 +187,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Background" parent="." instance=ExtResource("1_mgm53")]
+position = Vector2(-9, -388)
 
 [node name="DayNightTint" type="CanvasModulate" parent="."]
 color = Color(1, 0.92156863, 0.80784315, 1)
