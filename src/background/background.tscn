@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch63bb0qh0nt7"]
+
+[ext_resource type="Texture2D" uid="uid://cvxnvuvpg010c" path="res://assets/sprites/free-city-backgrounds-pixel-art/city 1/1.png" id="1_ntuy3"]
+[ext_resource type="Texture2D" uid="uid://ckamjakipooco" path="res://assets/sprites/free-city-backgrounds-pixel-art/city 1/2.png" id="2_2gklc"]
+[ext_resource type="Texture2D" uid="uid://u88ujl7u5ufe" path="res://assets/sprites/free-city-backgrounds-pixel-art/city 1/3.png" id="3_x5mbg"]
+[ext_resource type="Texture2D" uid="uid://bh5jm2ujxe03" path="res://assets/sprites/free-city-backgrounds-pixel-art/city 1/4.png" id="4_ee3xu"]
+[ext_resource type="Texture2D" uid="uid://cdmtxyaphwb2r" path="res://assets/sprites/free-city-backgrounds-pixel-art/city 1/5.png" id="5_33khe"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="Sky" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(684, 637)
+scale = Vector2(6, 6)
+texture = ExtResource("1_ntuy3")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+
+[node name="Sky" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(684, 637)
+scale = Vector2(6, 6)
+texture = ExtResource("2_2gklc")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="Sky" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(684, 637)
+scale = Vector2(6, 6)
+texture = ExtResource("3_x5mbg")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 0.7)
+
+[node name="Sky" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(684, 637)
+scale = Vector2(6, 6)
+texture = ExtResource("4_ee3xu")
+
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+
+[node name="Sky" type="Sprite2D" parent="Parallax2D5"]
+position = Vector2(684, 637)
+scale = Vector2(6, 6)
+texture = ExtResource("5_33khe")
