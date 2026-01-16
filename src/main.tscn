@@ -1,10 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://155xx7s6y6ta"]
+[gd_scene load_steps=20 format=3 uid="uid://155xx7s6y6ta"]
 
-[ext_resource type="Texture2D" uid="uid://bl3ve5sje07nv" path="res://assets/sprites/sky-bg.png" id="1_mgm53"]
+[ext_resource type="PackedScene" uid="uid://ch63bb0qh0nt7" path="res://src/background/background.tscn" id="1_mgm53"]
 [ext_resource type="Texture2D" uid="uid://bi1sm8ng833hk" path="res://assets/sprites/kenney/tiny_town_tilemap_packed.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://h0j2d853ju51" path="res://assets/sprites/kenney/tile_0083.png" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://bkve0fyh0lcar" path="res://src/parallax_layer.gd" id="2_kqbth"]
-[ext_resource type="Texture2D" uid="uid://dfpt7tyn1tmil" path="res://assets/sprites/Cloudy-Pack-Free/_Sunny Clouds/Smooth/Cloud-21.png" id="3_kqbth"]
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://src/actors/player.tscn" id="3_player"]
 [ext_resource type="AudioStream" uid="uid://dwofel7s8qs2w" path="res://assets/music/pixel-rooftop-dusk.mp3" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://c7ctp6riujcp" path="res://assets/sprites/ground_dry.png" id="4_mgm53"]
@@ -177,6 +175,8 @@ size = Vector2(50, 1280)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_right"]
 size = Vector2(50, 1280)
 
+[sub_resource type="TileSet" id="TileSet_srxbw"]
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -186,20 +186,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Background" parent="." instance=ExtResource("1_mgm53")]
+
 [node name="DayNightTint" type="CanvasModulate" parent="."]
 color = Color(1, 0.92156863, 0.80784315, 1)
-
-[node name="Sky" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
-texture = ExtResource("1_mgm53")
-
-[node name="ParallaxLayer" type="Parallax2D" parent="."]
-repeat_size = Vector2(4000, 0)
-script = ExtResource("2_kqbth")
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
-scale = Vector2(3, 3)
-texture = ExtResource("3_kqbth")
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -270,3 +260,7 @@ y_sort_enabled = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jyhfs")
 autoplay = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_srxbw")
+format = 2
